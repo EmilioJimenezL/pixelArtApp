@@ -1,3 +1,5 @@
+package PixelArt;
+
 import javax.swing.*;
 import java.awt.*;
 
