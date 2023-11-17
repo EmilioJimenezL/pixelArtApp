@@ -21,9 +21,14 @@ public class WindowUtils {
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jFrame.setSize(1280, 720);
         jFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        jFrame.setLayout(new GridLayout(3,1));
+        jFrame.setLayout(new GridLayout());
+        JPanel mainTitle = new JPanel();
+        mainTitle.setLayout(new GridLayout(2, 3, 100, 100));
         JButton buttonStart =  new JButton("Iniciar");
         JLabel labelTitle = new JLabel("PixArt: Aplicacion PixelArt");
+        mainTitle.add(labelTitle);
+        mainTitle.add(buttonStart);
+        jFrame.add(mainTitle);
         jFrame.setVisible(true);
         return jFrame;
     }
