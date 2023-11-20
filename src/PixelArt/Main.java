@@ -12,5 +12,6 @@ public class Main {
         window.setExtendedState(JFrame.MAXIMIZED_BOTH);
         window.add(mainMenu);
         window.setVisible(true);
+
     }
 }

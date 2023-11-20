@@ -26,17 +26,26 @@ public class MainMenu extends JPanel implements ActionListener {
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = GridBagConstraints.BOTH;
         add(startBtn, gridBagConstraints);
+
         exitBtn = new JButton("Salir");
-        startBtn.addActionListener(this);
+        exitBtn.addActionListener(this);
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = GridBagConstraints.BOTH;
         add(exitBtn, gridBagConstraints);
+
+
     }
 
     @Override
     public void actionPerformed(ActionEvent event) {
+        System.out.println(event);
         if (event.getSource().equals(exitBtn)) {
+            System.out.println("Boton SALIR presionado");
+            JOptionPane.showMessageDialog(null, "Gracias por usar PixArt.\n" +
+                    "Saliendo...", "Exit", JOptionPane.INFORMATION_MESSAGE);
+            System.out.println("TERMINANDO PROGRAMA...");
+            System.exit(0);
 
         }
     }
