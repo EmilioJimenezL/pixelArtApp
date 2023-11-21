@@ -5,11 +5,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class MainMenu extends JPanel implements ActionListener {
+public class MainMenuPanel extends JPanel implements ActionListener {
     JButton startBtn, exitBtn;
     JLabel titleLbl;
     GridBagConstraints gridBagConstraints = new GridBagConstraints();
-    public MainMenu (){
+    public MainMenuPanel(){
         setLayout(new GridBagLayout());
 
         gridBagConstraints.insets = new Insets(100,100,100,100);
