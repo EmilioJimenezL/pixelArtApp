@@ -49,8 +49,8 @@ public class MainMenuPanel extends JPanel implements ActionListener {
             System.out.println("TERMINANDO PROGRAMA...");
             System.exit(0);
         } else if (event.getSource().equals(startBtn)) {
-            Editor editor = new Editor(500,500, 10);
-            EditorWindow editorWindow = new EditorWindow(editor);
+            EditorPanel editorPanel = new EditorPanel(1280,720, 10);
+            EditorWindow editorWindow = new EditorWindow(editorPanel);
         }
     }
 

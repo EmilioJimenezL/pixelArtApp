@@ -7,19 +7,21 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 
-public class Editor extends JPanel implements MouseListener, MouseMotionListener {
+public class EditorPanel extends JPanel implements MouseListener, MouseMotionListener {
 
-    int width, height, pixSize;
+    int width, height, pixSize, pixNumWidth, pixNumHeight;
     Graphics graphics;
     BufferedImage image;
     JLabel label;
 
 
-    public Editor(int width, int height, int pixSize) {
+    public EditorPanel(int width, int height, int pixSize) {
         super();
         this.width = width;
         this.height = height;
         this.pixSize = pixSize;
+        pixNumWidth = this.width/pixSize;
+        pixNumHeight = this.height/pixSize;
         image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
         graphics = image.createGraphics();
 
@@ -52,10 +54,11 @@ public class Editor extends JPanel implements MouseListener, MouseMotionListener
         // sets color to black
         graphics.setColor(new Color(0, 0, 0));
         // height and width are the same
-
-        for (int i = 0; i < height; i = i + height / 50) {
-            graphics.drawLine(i, 0, i, height);
-            graphics.drawLine(0, i, width, i);
+        for (int i = 0; i < this.width; i++) {
+            for (int j = 0; j < this.height; j++) {
+                graphics.setColor(Color.black);
+                graphics.drawRect(i * this.pixSize, j * this.pixSize, pixSize, pixSize);
+            }
         }
     }
     public void setColor(Color color){
