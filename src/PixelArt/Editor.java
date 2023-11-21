@@ -12,7 +12,6 @@ public class Editor extends JPanel implements MouseListener, MouseMotionListener
     int width, height;
     Graphics graphics;
     BufferedImage image;
-    Canvas canvas;
     JLabel label;
 
 
@@ -20,11 +19,8 @@ public class Editor extends JPanel implements MouseListener, MouseMotionListener
         super();
         this.width = width;
         this.height = height;
-        image = new BufferedImage(500, 500, BufferedImage.TYPE_INT_RGB);
+        image = new BufferedImage(width, 500, BufferedImage.TYPE_INT_RGB);
         graphics = image.createGraphics();
-
-        canvas = new Canvas();
-        canvas.setBounds(0, 0, 500, 500);
 
         //canvas.addMouseListener(this);
         //add(canvas);
