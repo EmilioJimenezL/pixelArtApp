@@ -9,17 +9,18 @@ import java.awt.image.BufferedImage;
 
 public class Editor extends JPanel implements MouseListener, MouseMotionListener {
 
-    int width, height;
+    int width, height, pixSize;
     Graphics graphics;
     BufferedImage image;
     JLabel label;
 
 
-    public Editor(int width, int height) {
+    public Editor(int width, int height, int pixSize) {
         super();
         this.width = width;
         this.height = height;
-        image = new BufferedImage(width, 500, BufferedImage.TYPE_INT_RGB);
+        this.pixSize = pixSize;
+        image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
         graphics = image.createGraphics();
 
         //canvas.addMouseListener(this);
@@ -32,7 +33,7 @@ public class Editor extends JPanel implements MouseListener, MouseMotionListener
         //setBackground(new Color(255, 255, 255));
 
         graphics.setColor(new Color(255, 255, 255));
-        graphics.fillRect(0, 0, 500, 500);
+        graphics.fillRect(0, 0, width, height);
         graphics.setColor(new Color(0, 255, 0));
 
         //graphics.drawLine(50, 0, 50, 400);
@@ -53,8 +54,8 @@ public class Editor extends JPanel implements MouseListener, MouseMotionListener
         // height and width are the same
 
         for (int i = 0; i < height; i = i + height / 50) {
-            graphics.drawLine(i, 0, i, 500);
-            graphics.drawLine(0, i, 500, i);
+            graphics.drawLine(i, 0, i, height);
+            graphics.drawLine(0, i, width, i);
         }
     }
     public void setColor(Color color){

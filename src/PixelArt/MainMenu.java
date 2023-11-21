@@ -49,13 +49,8 @@ public class MainMenu extends JPanel implements ActionListener {
             System.out.println("TERMINANDO PROGRAMA...");
             System.exit(0);
         } else if (event.getSource().equals(startBtn)) {
-            System.out.println("Boton iniciar presionado");
-            JFrame editorWindow = new JFrame("PixArt");
-            editorWindow.setLayout(new BorderLayout());
-            editorWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            Editor editor = new Editor(500, 500);
-            editorWindow.setSize(500,500);
-            JPanel editorPanel = new JPanel();
+            Editor editor = new Editor(500,500, 10);
+            EditorWindow editorWindow = new EditorWindow(editor);
         }
     }
 
