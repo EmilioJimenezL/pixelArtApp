@@ -16,70 +16,62 @@ public class Editor extends JPanel implements MouseListener, MouseMotionListener
     JLabel label;
 
 
-    public Editor(int width, int height){
-       super();
-       this.width = width;
-       this.height = height;
-       image = new BufferedImage(500, 500, BufferedImage.TYPE_INT_RGB);
-       graphics = image.createGraphics();
+    public Editor(int width, int height) {
+        super();
+        this.width = width;
+        this.height = height;
+        image = new BufferedImage(500, 500, BufferedImage.TYPE_INT_RGB);
+        graphics = image.createGraphics();
 
-       canvas = new Canvas();
-       canvas.setBounds(0,0,500,500);
+        canvas = new Canvas();
+        canvas.setBounds(0, 0, 500, 500);
 
-       //canvas.addMouseListener(this);
-       //add(canvas);
-      // label = new JLabel();
-      // label.setBounds(0, 0, 500, 500);
-       addMouseListener(this);
-       addMouseMotionListener(this);
+        //canvas.addMouseListener(this);
+        //add(canvas);
+        // label = new JLabel();
+        // label.setBounds(0, 0, 500, 500);
+        addMouseListener(this);
+        addMouseMotionListener(this);
 
-       //setBackground(new Color(255, 255, 255));
+        //setBackground(new Color(255, 255, 255));
 
-       graphics.setColor(new Color(255, 255, 255));
-       graphics.fillRect(0,0,500,500);
-       graphics.setColor(new Color(0, 255, 0));
+        graphics.setColor(new Color(255, 255, 255));
+        graphics.fillRect(0, 0, 500, 500);
+        graphics.setColor(new Color(0, 255, 0));
 
-       //graphics.drawLine(50, 0, 50, 400);
-       //canvas.paint(graphics);
-       //graphics.drawImage(image, 0, 0, canvas);
-       drawGrid();
-       //graphics.drawImage(image, 0, 0, canvas);
+        //graphics.drawLine(50, 0, 50, 400);
+        //canvas.paint(graphics);
+        //graphics.drawImage(image, 0, 0, canvas);
+        drawGrid();
+        //graphics.drawImage(image, 0, 0, canvas);
 
-        graphics.setColor( new Color(0, 0, 255) );
+        graphics.setColor(new Color(0, 0, 255));
         //graphics.fillRect(0*10, 0*10, 0*10 + 10, 0*10 + 10);
 
     }
 
     // draws a 50x50 grid
-    public void drawGrid(){
+    public void drawGrid() {
         // sets color to black
-        graphics.setColor(new Color(0,0,0));
+        graphics.setColor(new Color(0, 0, 0));
         // height and width are the same
 
-        for(int i = 0; i < height; i = i + height/50){
-           graphics.drawLine(i, 0, i, 500);
-           graphics.drawLine(0, i, 500, i);
-       }
+        for (int i = 0; i < height; i = i + height / 50) {
+            graphics.drawLine(i, 0, i, 500);
+            graphics.drawLine(0, i, 500, i);
+        }
     }
 
     @Override
-    public void paint(Graphics g){
+    public void paint(Graphics g) {
         super.paint(g);
         g.drawImage(image, 0, 0, this);
     }
 
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
-        int x = mouseEvent.getX() / 10;
-        int y = mouseEvent.getY() / 10;
-        System.out.printf("@ %d, %d\n", x, y);
-        graphics.setColor( new Color(0, 0, 255) );
-        graphics.fillRect(x*10, y*10, 10, 10);
-        System.out.printf("@ RECT from %d, %d to %d, %d\n", x*10, y*10, x*10+10, y*10+10);
-        repaint();
-
+        paintAndDraw(mouseEvent);
     }
-
 
 
     @Override
@@ -90,13 +82,10 @@ public class Editor extends JPanel implements MouseListener, MouseMotionListener
 
     @Override
     public void mouseReleased(MouseEvent mouseEvent) {
-
     }
 
     @Override
     public void mouseEntered(MouseEvent mouseEvent) {
-        System.out.printf("aaaa");
-
     }
 
 
@@ -107,13 +96,18 @@ public class Editor extends JPanel implements MouseListener, MouseMotionListener
 
     @Override
     public void mouseDragged(MouseEvent mouseEvent) {
+        paintAndDraw(mouseEvent);
+    }
+
+    void paintAndDraw(MouseEvent mouseEvent) {
         int x = mouseEvent.getX() / 10;
         int y = mouseEvent.getY() / 10;
         System.out.printf("@ %d, %d\n", x, y);
-        graphics.setColor( new Color(0, 0, 255) );
-        graphics.fillRect(x*10, y*10, 10, 10);
-        System.out.printf("@ RECT from %d, %d to %d, %d\n", x*10, y*10, x*10+10, y*10+10);
+        //    graphics.setColor(new Color(0, 0, 255));
+        graphics.fillRect(x * 10, y * 10, 10, 10);
+        System.out.printf("@ RECT from %d, %d to %d, %d\n", x * 10, y * 10, x * 10 + 10, y * 10 + 10);
         repaint();
+
     }
 
     @Override
