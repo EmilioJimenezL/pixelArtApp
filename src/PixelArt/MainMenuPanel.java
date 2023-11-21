@@ -11,7 +11,6 @@ public class MainMenuPanel extends JPanel implements ActionListener {
     GridBagConstraints gridBagConstraints = new GridBagConstraints();
     public MainMenuPanel(){
         setLayout(new GridBagLayout());
-
         gridBagConstraints.insets = new Insets(100,100,100,100);
         titleLbl = new JLabel("PixArt");
         titleLbl.setHorizontalAlignment(SwingConstants.CENTER);
@@ -49,8 +48,7 @@ public class MainMenuPanel extends JPanel implements ActionListener {
             System.out.println("TERMINANDO PROGRAMA...");
             System.exit(0);
         } else if (event.getSource().equals(startBtn)) {
-            EditorPanel editorPanel = new EditorPanel(1280,720, 10);
-            EditorWindow editorWindow = new EditorWindow(editorPanel);
+            IOWindow ioWindow = new IOWindow();
         }
     }
 

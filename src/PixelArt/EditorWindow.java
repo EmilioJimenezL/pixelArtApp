@@ -7,6 +7,7 @@ public class EditorWindow extends JFrame {
     JPanel mainPanel, northPanel, southPanel, eastPanel, westPanel;
     public EditorWindow(EditorPanel editorPanel){
         setSize(1920, 1080);
+        setName("PixArt: Editor");
         setExtendedState(MAXIMIZED_BOTH);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
