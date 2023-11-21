@@ -103,12 +103,12 @@ public class EditorPanel extends JPanel implements MouseListener, MouseMotionLis
     }
 
     void paintAndDraw(MouseEvent mouseEvent) {
-        int x = mouseEvent.getX() / 10;
-        int y = mouseEvent.getY() / 10;
+        int x = mouseEvent.getX() / this.pixSize;
+        int y = mouseEvent.getY() / this.pixSize;
         System.out.printf("@ %d, %d\n", x, y);
         //    graphics.setColor(new Color(0, 0, 255));
-        graphics.fillRect(x * 10, y * 10, 10, 10);
-        System.out.printf("@ RECT from %d, %d to %d, %d\n", x * 10, y * 10, x * 10 + 10, y * 10 + 10);
+        graphics.fillRect(x * this.pixSize, y * this.pixSize, this.pixSize, this.pixSize);
+        System.out.printf("@ RECT from %d, %d to %d, %d\n", x * this.pixSize, y * this.pixSize, x * this.pixSize + this.pixSize, y * this.pixSize + this.pixSize);
         repaint();
 
     }

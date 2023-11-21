@@ -1,3 +1,3 @@
 # pixelArtApp
 
-A Pixel Art editor.
+A Pixel Art editorPanel.

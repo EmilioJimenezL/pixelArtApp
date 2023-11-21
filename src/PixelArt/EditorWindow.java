@@ -6,7 +6,7 @@ import java.awt.*;
 public class EditorWindow extends JFrame {
     JPanel mainPanel, northPanel, southPanel, eastPanel, westPanel;
     public EditorWindow(EditorPanel editorPanel){
-        setSize(editorPanel.width+200, editorPanel.height+200);
+        setSize(1920, 1080);
         setExtendedState(MAXIMIZED_BOTH);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
