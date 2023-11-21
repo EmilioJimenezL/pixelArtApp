@@ -6,7 +6,7 @@ import java.awt.*;
 public class EditorWindow extends JFrame {
     JPanel mainPanel, northPanel, southPanel, eastPanel, westPanel;
     public EditorWindow(Editor editor){
-        setSize(1280, 720);
+        setSize(editor.width*2,editor.height*2);
         setExtendedState(MAXIMIZED_BOTH);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
@@ -19,11 +19,11 @@ public class EditorWindow extends JFrame {
         southPanel.setBackground(Color.BLUE);
         eastPanel.setBackground(Color.GREEN);
         westPanel.setBackground(Color.MAGENTA);
-        mainPanel.setPreferredSize(new Dimension(100,100));
-        northPanel.setPreferredSize(new Dimension(100,100));
-        southPanel.setPreferredSize(new Dimension(100,100));
-        eastPanel.setPreferredSize(new Dimension(100,100));
-        westPanel.setPreferredSize(new Dimension(100,100));
+        mainPanel.setPreferredSize(new Dimension(editor.width, editor.height));
+        northPanel.setPreferredSize(new Dimension((this.getWidth() - editor.width)/2,(this.getHeight() - editor.height)/2));
+        southPanel.setPreferredSize(new Dimension((this.getWidth() - editor.width)/2,(this.getHeight() - editor.height)/2));
+        eastPanel.setPreferredSize(new Dimension((this.getWidth() - editor.width)/2,(this.getHeight() - editor.height)/2));
+        westPanel.setPreferredSize(new Dimension((this.getWidth() - editor.width)/2,(this.getHeight() - editor.height)/2));
         add(northPanel, BorderLayout.NORTH);
         add(southPanel, BorderLayout.SOUTH);
         add(eastPanel, BorderLayout.EAST);
