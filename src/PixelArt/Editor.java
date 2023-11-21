@@ -57,6 +57,9 @@ public class Editor extends JPanel implements MouseListener, MouseMotionListener
             graphics.drawLine(0, i, 500, i);
         }
     }
+    public void setColor(Color color){
+        graphics.setColor(color);
+    }
 
     @Override
     public void paint(Graphics g) {

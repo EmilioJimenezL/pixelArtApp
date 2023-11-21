@@ -14,7 +14,7 @@ public class Main {
         window.setResizable(false);
         window.setVisible(true);
 
-        JFrame window2 = new JFrame("drawing canvas");
+        /*JFrame window2 = new JFrame("drawing canvas");
         window2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         Editor editor = new Editor(500, 500);
@@ -23,6 +23,6 @@ public class Main {
         window2.setSize(500, 500);
         window2.setResizable(false);
         window2.setVisible(true);
-
+        editor.setColor(Color.YELLOW);*/
     }
 }
