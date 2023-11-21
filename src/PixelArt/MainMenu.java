@@ -11,6 +11,7 @@ public class MainMenu extends JPanel implements ActionListener {
     GridBagConstraints gridBagConstraints = new GridBagConstraints();
     public MainMenu (){
         setLayout(new GridBagLayout());
+
         gridBagConstraints.insets = new Insets(100,100,100,100);
         titleLbl = new JLabel("PixArt");
         titleLbl.setHorizontalAlignment(SwingConstants.CENTER);
@@ -35,6 +36,7 @@ public class MainMenu extends JPanel implements ActionListener {
         add(exitBtn, gridBagConstraints);
 
 
+
     }
 
     @Override
@@ -49,4 +51,5 @@ public class MainMenu extends JPanel implements ActionListener {
 
         }
     }
+
 }
