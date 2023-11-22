@@ -15,7 +15,7 @@ public class EditorWindow extends JFrame implements ActionListener, ChangeListen
     int pixNumWidth, pixNumHeight, pixSize, canvasWidth, canvasHeight;
     Graphics graphics;
     BufferedImage image;
-    JLabel redLabel, greenLabel, blueLabel;
+    JLabel redLabel, greenLabel, blueLabel, currentColorLabel, currentColorTextLabel;
     JButton saveImageButton, applyColorBtn;
     JSlider redSlider, greenSlider, blueSlider;
     GridBagConstraints gbc = new GridBagConstraints();
@@ -126,6 +126,18 @@ public class EditorWindow extends JFrame implements ActionListener, ChangeListen
         gbc.gridx = 1;
         gbc.gridy = 2;
         westPanel.add(blueLabel, gbc);
+        currentColorTextLabel = new JLabel("Color actual:");
+        currentColorTextLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        westPanel.add(currentColorTextLabel, gbc);
+        currentColorLabel = new JLabel("    ");
+        currentColorLabel.setOpaque(true);
+        currentColorLabel.setBorder(BorderFactory.createLineBorder(Color.black));
+        currentColorLabel.setBackground(Color.black);
+        gbc.gridx = 1;
+        gbc.gridy = 3;
+        westPanel.add(currentColorLabel, gbc);
         return westPanel;
     }
     @Override
@@ -145,6 +157,7 @@ public class EditorWindow extends JFrame implements ActionListener, ChangeListen
         this.redLabel.setText("R: " + redSlider.getValue());
         this.greenLabel.setText("G: " + greenSlider.getValue());
         this.blueLabel.setText("B: " + blueSlider.getValue());
+        this.currentColorLabel.setBackground(color);
         mainPanel.setColor(color);
     }
 }

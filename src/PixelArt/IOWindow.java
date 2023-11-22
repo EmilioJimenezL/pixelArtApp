@@ -13,7 +13,7 @@ import java.nio.BufferOverflowException;
 
 public class IOWindow extends JFrame implements ActionListener {
     JPanel ioPanel;
-    JButton newFileBtn, searcFileBtn;
+    JButton newFileBtn, searcFileBtn, returnMenuBtn;
     JLabel textLabel;
     GridBagConstraints gridBagConstraints = new GridBagConstraints();
     JFileChooser fileChooser = new JFileChooser();
@@ -28,7 +28,7 @@ public class IOWindow extends JFrame implements ActionListener {
     public JPanel generateIOPanel(){
         JPanel IOPanel = new JPanel();
         IOPanel.setLayout(new GridBagLayout());
-        gridBagConstraints.insets = new Insets(100,100,100,100);
+        gridBagConstraints.insets = new Insets(50,100,50,100);
         textLabel = new JLabel("Desea abrir una imagen para editar o crear un nuevo archivo?");
         textLabel.setHorizontalAlignment(SwingConstants.CENTER);
         gridBagConstraints.gridx = 0;
@@ -53,6 +53,14 @@ public class IOWindow extends JFrame implements ActionListener {
         gridBagConstraints.weighty = 1;
         gridBagConstraints.fill = GridBagConstraints.BOTH;
         IOPanel.add(searcFileBtn, gridBagConstraints);
+        returnMenuBtn = new JButton("Regresar al Menú");
+        returnMenuBtn.addActionListener(this);
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.weightx = 1;
+        gridBagConstraints.weighty = 1;
+        gridBagConstraints.fill = GridBagConstraints.BOTH;
+        IOPanel.add(returnMenuBtn, gridBagConstraints);
         return IOPanel;
     }
     @Override
@@ -61,6 +69,10 @@ public class IOWindow extends JFrame implements ActionListener {
             //EditorPanel editorPanel = new EditorPanel(1080, 720, 10);
             EditorWindow editorWindow = new EditorWindow(1080,720,10);
             setVisible(false);
+        } else if (event.getSource().equals(returnMenuBtn)) {
+            MenuWindow menuWindow = new MenuWindow();
+            this.setVisible(false);
+
         } else if (event.getSource().equals(searcFileBtn)) {
             fileChooser.setCurrentDirectory(new File("."));
             fileChooser.setFileFilter(new FileFilter() {
