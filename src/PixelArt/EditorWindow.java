@@ -2,17 +2,17 @@ package PixelArt;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
+import java.awt.event.*;
 import java.awt.image.BufferedImage;
+import java.io.File;
 
-public class EditorWindow extends JFrame implements MouseListener, MouseMotionListener {
+public class EditorWindow extends JFrame implements MouseListener, MouseMotionListener, ActionListener {
     JPanel mainPanel, northPanel, southPanel, eastPanel, westPanel;
     int pixNumWidth, pixNumHeight, pixSize, canvasWidth, canvasHeight;
     Graphics graphics;
     BufferedImage image;
     JLabel label;
+    JButton saveImageButton;
     public EditorWindow(){
         setSize(1920, 1080);
         setName("PixArt: Editor");
@@ -38,6 +38,10 @@ public class EditorWindow extends JFrame implements MouseListener, MouseMotionLi
         add(eastPanel, BorderLayout.EAST);
         add(westPanel, BorderLayout.WEST);
         add(mainPanel, BorderLayout.CENTER);
+        saveImageButton = new JButton("Guardar Imagen");
+        saveImageButton.addActionListener(this);
+        southPanel.add(saveImageButton);
+
         setVisible(true);
     }
     public JPanel generateEditorPanel(int width, int height, int pixSize){
@@ -51,7 +55,7 @@ public class EditorWindow extends JFrame implements MouseListener, MouseMotionLi
         this.pixNumHeight = height/pixSize;
         image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
         graphics = image.createGraphics();
-        addMouseListener(this);
+        //addMouseListener(this);
         addMouseMotionListener(this);
         graphics.setColor(new Color(255, 255, 255));
         graphics.fillRect(0, 0, width, height);
@@ -65,7 +69,7 @@ public class EditorWindow extends JFrame implements MouseListener, MouseMotionLi
         // height and width are the same
         for (int i = 0; i < this.canvasWidth; i++) {
             for (int j = 0; j < this.canvasHeight; j++) {
-                graphics.setColor(Color.black);
+                //graphics.setColor(Color.black);
                 graphics.drawRect(i * this.pixSize, j * this.pixSize, this.pixSize, this.pixSize);
             }
         }
@@ -78,8 +82,17 @@ public class EditorWindow extends JFrame implements MouseListener, MouseMotionLi
         graphics.fillRect(x * this.pixSize, y * this.pixSize, this.pixSize, this.pixSize);
         System.out.printf("@ RECT from %d, %d to %d, %d\n", x * this.pixSize, y * this.pixSize, x * this.pixSize + this.pixSize, y * this.pixSize + this.pixSize);
         repaint();
+        //paint(this.getGraphics());
+
 
     }
+
+//    @Override
+//    public void paintComponents(Graphics g) {
+//        super.paintComponents(g);
+//        g.drawImage(image, 0, 0, this);
+//    }
+
     @Override
     public void paint(Graphics g){
         super.paint(g);
@@ -117,6 +130,21 @@ public class EditorWindow extends JFrame implements MouseListener, MouseMotionLi
 
     @Override
     public void mouseMoved(MouseEvent e) {
+
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent actionEvent) {
+        if(actionEvent.getSource().equals(saveImageButton)){
+            //System.out.printf("save image button\n");
+            JFileChooser fileChooser = new JFileChooser(".");
+            fileChooser.setCurrentDirectory(new File("."));
+            fileChooser.showDialog(null, "Save");
+            IOUtils.writeImage(image, fileChooser.getSelectedFile().getAbsolutePath());
+            //File file = new File(fileChooser.getSelectedFile().getAbsolutePath());
+
+            //System.out.println(file.getAbsolutePath());
+        }
 
     }
 }

@@ -1,6 +1,7 @@
 package PixelArt;
 
 import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -33,10 +34,11 @@ public class IOUtils {
         }
         return img;
     }
-    public static void writeImage(BufferedImage img, String filePath, String fileName){
-        File imgFile = new File(filePath + fileName);
+    public static void writeImage(BufferedImage img, String absoluteFilePath){
+        File imgFile = new File(absoluteFilePath);
         if (imgFile.exists()) {
             System.out.println("El archivo ya existe, sobreescribiendo...");
+            JOptionPane.showMessageDialog(null, "El archivo ya existe, sobreescribiendo.", "Guardar Imagen", JOptionPane.WARNING_MESSAGE);
             try {
                 ImageIO.write(img, "PNG", imgFile);
             }catch (IOException e){
