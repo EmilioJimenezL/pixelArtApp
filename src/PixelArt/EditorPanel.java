@@ -10,6 +10,7 @@ import java.awt.image.BufferedImage;
 public class EditorPanel extends JPanel implements MouseListener, MouseMotionListener {
 
     int width, height, pixSize, pixNumWidth, pixNumHeight;
+    public Color brushColor;
     Graphics graphics;
     BufferedImage image, background;
     public EditorPanel(int width, int height, int pixSize) {
@@ -25,9 +26,7 @@ public class EditorPanel extends JPanel implements MouseListener, MouseMotionLis
         addMouseMotionListener(this);
         graphics.setColor(new Color(255, 255, 255));
         graphics.fillRect(0, 0, width, height);
-        graphics.setColor(new Color(0, 255, 0));
         drawGrid();
-        graphics.setColor(new Color(0, 0, 255));
     }
     public EditorPanel(int width, int height, int pixSize, BufferedImage backgroundImg) {
         super();
@@ -41,9 +40,7 @@ public class EditorPanel extends JPanel implements MouseListener, MouseMotionLis
         graphics = image.createGraphics();
         addMouseListener(this);
         addMouseMotionListener(this);
-        graphics.setColor(new Color(0, 255, 0));
         drawGrid();
-        graphics.setColor(new Color(0, 0, 255));
     }
 
     // draws a 50x50 grid

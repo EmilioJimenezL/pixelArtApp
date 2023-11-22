@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.nio.BufferOverflowException;
 
 public class IOWindow extends JFrame implements ActionListener {
     JPanel ioPanel;
@@ -82,10 +83,12 @@ public class IOWindow extends JFrame implements ActionListener {
             File file = new File(fileChooser.getSelectedFile().getAbsolutePath());
             try {
                 BufferedImage bkgImg = ImageIO.read(file);
+                bkgImg = ImgUtils.resize(bkgImg, 1080, 720);
                 EditorWindow editorWindow = new EditorWindow(1080, 720, 10, bkgImg);
             }catch (IOException e){
                 e.printStackTrace();
             }
+            setVisible(false);
         }
     }
 }
