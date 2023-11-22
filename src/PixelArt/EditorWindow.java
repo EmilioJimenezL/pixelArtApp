@@ -1,13 +1,17 @@
 package PixelArt;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
-public class EditorWindow extends JFrame implements ActionListener {
-    JPanel mainPanel, northPanel, southPanel, eastPanel, westPanel;
+public class EditorWindow extends JFrame implements ActionListener, ChangeListener {
+    Color color;
+    JPanel northPanel, southPanel, eastPanel, westPanel;
+    EditorPanel mainPanel;
     int pixNumWidth, pixNumHeight, pixSize, canvasWidth, canvasHeight;
     Graphics graphics;
     BufferedImage image;
@@ -95,35 +99,33 @@ public class EditorWindow extends JFrame implements ActionListener {
         westPanel.setLayout(new GridBagLayout());
         gbc.insets =  new Insets(40, 10, 40, 10);
         westPanel.setBorder(BorderFactory.createLineBorder(Color.black));
-        redSlider = new JSlider();
+        redSlider = new JSlider(0,255, 0);
+        redSlider.addChangeListener(this);
         gbc.gridx = 0;
         gbc.gridy = 0;
         westPanel.add(redSlider, gbc);
-        greenSlider = new JSlider();
+        greenSlider = new JSlider(0,255, 0);
+        greenSlider.addChangeListener(this);
         gbc.gridx = 0;
         gbc.gridy = 1;
         westPanel.add(greenSlider, gbc);
-        blueSlider = new JSlider();
+        blueSlider = new JSlider(0,255, 0);
+        blueSlider.addChangeListener(this);
         gbc.gridx = 0;
         gbc.gridy = 2;
         westPanel.add(blueSlider, gbc);
-        redLabel = new JLabel("R");
+        redLabel = new JLabel("R: " + redSlider.getValue());
         gbc.gridx = 1;
         gbc.gridy = 0;
         westPanel.add(redLabel, gbc);
-        greenLabel = new JLabel("G");
+        greenLabel = new JLabel("G: " + greenSlider.getValue());
         gbc.gridx = 1;
         gbc.gridy = 1;
         westPanel.add(greenLabel, gbc);
-        blueLabel = new JLabel("B");
+        blueLabel = new JLabel("B: " + blueSlider.getValue());
         gbc.gridx = 1;
         gbc.gridy = 2;
         westPanel.add(blueLabel, gbc);
-        applyColorBtn = new JButton("Aplicar");
-        applyColorBtn.addActionListener(this);
-        gbc.gridx = 0;
-        gbc.gridy = 3;
-        westPanel.add(applyColorBtn, gbc);
         return westPanel;
     }
     @Override
@@ -133,10 +135,16 @@ public class EditorWindow extends JFrame implements ActionListener {
             fileChooser.setCurrentDirectory(new File("C:\\Users\\emiiv\\Pictures"));
             fileChooser.showDialog(null, "Save");
             IOUtils.writeImage(image, fileChooser.getSelectedFile().getAbsolutePath());
-        } else if (actionEvent.getSource().equals(applyColorBtn)) {
-            Color color = new Color((100/255)*redSlider.getValue(), (100/255)*greenSlider.getValue(), (100/255)*blueSlider.getValue());
-            mainPanel.getGraphics().setColor(color);
         }
 
+    }
+
+    @Override
+    public void stateChanged(ChangeEvent e) {
+        color = new Color(redSlider.getValue(), greenSlider.getValue(), blueSlider.getValue());
+        this.redLabel.setText("R: " + redSlider.getValue());
+        this.greenLabel.setText("G: " + greenSlider.getValue());
+        this.blueLabel.setText("B: " + blueSlider.getValue());
+        mainPanel.setColor(color);
     }
 }
