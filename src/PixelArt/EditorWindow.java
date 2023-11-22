@@ -13,10 +13,9 @@ public class EditorWindow extends JFrame implements ActionListener, ChangeListen
     JPanel northPanel, southPanel, eastPanel, westPanel;
     EditorPanel mainPanel;
     int pixNumWidth, pixNumHeight, pixSize, canvasWidth, canvasHeight;
-    Graphics graphics;
     BufferedImage image;
     JLabel redLabel, greenLabel, blueLabel, currentColorLabel, currentColorTextLabel;
-    JButton saveImageButton, applyColorBtn;
+    JButton saveImageButton, redBtn, greenBtn, blueBtn, yellowBtn, pinkBtn, orangeBtn, blackBtn, whiteBtn;
     JSlider redSlider, greenSlider, blueSlider;
     GridBagConstraints gbc = new GridBagConstraints();
     public EditorWindow(int editorWidth, int editorHeight, int pixSize){
@@ -77,8 +76,65 @@ public class EditorWindow extends JFrame implements ActionListener, ChangeListen
     }
     public JPanel generateNorthPanel(){
         this.northPanel = new JPanel();
+        northPanel.setLayout(new GridBagLayout());
+        gbc.insets = new Insets(10,10,10,10);
         northPanel.setBorder(BorderFactory.createLineBorder(Color.black));
-        northPanel.add(new Label("PIXART"));
+        redBtn = new JButton();
+        redBtn.setBackground(Color.red);
+        redBtn.setOpaque(true);
+        redBtn.addActionListener(this);
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        northPanel.add(redBtn, gbc);
+        greenBtn = new JButton();
+        greenBtn.setBackground(Color.green);
+        greenBtn.setOpaque(true);
+        greenBtn.addActionListener(this);
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        northPanel.add(greenBtn, gbc);
+        blueBtn = new JButton();
+        blueBtn.setBackground(Color.blue);
+        blueBtn.setOpaque(true);
+        blueBtn.addActionListener(this);
+        gbc.gridx = 2;
+        gbc.gridy = 0;
+        northPanel.add(blueBtn, gbc);
+        yellowBtn = new JButton();
+        yellowBtn.setBackground(Color.yellow);
+        yellowBtn.setOpaque(true);
+        yellowBtn.addActionListener(this);
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        northPanel.add(yellowBtn, gbc);
+        orangeBtn = new JButton();
+        orangeBtn.setBackground(Color.orange);
+        orangeBtn.setOpaque(true);
+        orangeBtn.addActionListener(this);
+        gbc.gridx = 1;
+        gbc.gridy = 1;
+        northPanel.add(orangeBtn, gbc);
+        pinkBtn = new JButton();
+        pinkBtn.setBackground(Color.pink);
+        pinkBtn.setOpaque(true);
+        pinkBtn.addActionListener(this);
+        gbc.gridx = 2;
+        gbc.gridy = 1;
+        northPanel.add(pinkBtn, gbc);
+        blackBtn = new JButton();
+        blackBtn.setBackground(Color.black);
+        blackBtn.setOpaque(true);
+        blackBtn.addActionListener(this);
+        gbc.gridx = 3;
+        gbc.gridy = 0;
+        northPanel.add(blackBtn, gbc);
+        whiteBtn = new JButton();
+        whiteBtn.setBackground(Color.white);
+        whiteBtn.setOpaque(true);
+        whiteBtn.addActionListener(this);
+        gbc.gridx = 3;
+        gbc.gridy = 1;
+        northPanel.add(whiteBtn, gbc);
         return northPanel;
     }
     public JPanel generateSouthPanel(){
@@ -147,6 +203,26 @@ public class EditorWindow extends JFrame implements ActionListener, ChangeListen
             fileChooser.setCurrentDirectory(new File("."));
             fileChooser.showDialog(null, "Save");
             IOUtils.writeImage(image, fileChooser.getSelectedFile().getAbsolutePath());
+        } else {
+            if (actionEvent.getSource().equals(redBtn)) {
+                color = Color.red;
+            } else if (actionEvent.getSource().equals(greenBtn)) {
+                color = Color.green;
+            } else if (actionEvent.getSource().equals(blueBtn)) {
+                color = Color.blue;
+            } else if (actionEvent.getSource().equals(orangeBtn)) {
+                color = Color.orange;
+            } else if (actionEvent.getSource().equals(yellowBtn)) {
+                color = Color.YELLOW;
+            } else if (actionEvent.getSource().equals(pinkBtn)) {
+                color = Color.pink;
+            } else if (actionEvent.getSource().equals(blackBtn)) {
+                color = Color.black;
+            } else if (actionEvent.getSource().equals(whiteBtn)) {
+                color = Color.white;
+            }
+            mainPanel.setColor(color);
+            currentColorLabel.setBackground(color);
         }
 
     }
