@@ -46,7 +46,6 @@ public class EditorPanel extends JPanel implements MouseListener, MouseMotionLis
 
         graphics.setColor(new Color(0, 0, 255));
         //graphics.fillRect(0*10, 0*10, 0*10 + 10, 0*10 + 10);
-
     }
 
     // draws a 50x50 grid

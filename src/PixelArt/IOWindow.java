@@ -4,12 +4,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 public class IOWindow extends JFrame implements ActionListener {
     JPanel ioPanel;
     JButton newFileBtn, searcFileBtn;
     JLabel textLabel;
     GridBagConstraints gridBagConstraints = new GridBagConstraints();
+    JFileChooser fileChooser = new JFileChooser();
     public IOWindow(){
         setName("PixArt: Archivos");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -51,9 +53,14 @@ public class IOWindow extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent event) {
         if (event.getSource().equals(newFileBtn)) {
-            EditorPanel editorPanel = new EditorPanel(1080, 720, 10);
-            EditorWindow editorWindow = new EditorWindow(editorPanel);
+            //EditorPanel editorPanel = new EditorPanel(1080, 720, 10);
+            EditorWindow editorWindow = new EditorWindow();
             setVisible(false);
+        } else if (event.getSource().equals(searcFileBtn)) {
+            fileChooser.setCurrentDirectory(new File("C:\\Users\\emiiv\\Pictures"));
+            fileChooser.showDialog(null, "Load");
+            File file = new File(fileChooser.getSelectedFile().getAbsolutePath());
+
         }
     }
 }
