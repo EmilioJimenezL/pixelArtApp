@@ -11,10 +11,7 @@ public class EditorPanel extends JPanel implements MouseListener, MouseMotionLis
 
     int width, height, pixSize, pixNumWidth, pixNumHeight;
     Graphics graphics;
-    BufferedImage image;
-    JLabel label;
-
-
+    BufferedImage image, background;
     public EditorPanel(int width, int height, int pixSize) {
         super();
         this.width = width;
@@ -24,28 +21,29 @@ public class EditorPanel extends JPanel implements MouseListener, MouseMotionLis
         pixNumHeight = this.height/pixSize;
         image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
         graphics = image.createGraphics();
-
-        //canvas.addMouseListener(this);
-        //add(canvas);
-        // label = new JLabel();
-        // label.setBounds(0, 0, 500, 500);
         addMouseListener(this);
         addMouseMotionListener(this);
-
-        //setBackground(new Color(255, 255, 255));
-
         graphics.setColor(new Color(255, 255, 255));
         graphics.fillRect(0, 0, width, height);
         graphics.setColor(new Color(0, 255, 0));
-
-        //graphics.drawLine(50, 0, 50, 400);
-        //canvas.paint(graphics);
-        //graphics.drawImage(image, 0, 0, canvas);
         drawGrid();
-        //graphics.drawImage(image, 0, 0, canvas);
-
         graphics.setColor(new Color(0, 0, 255));
-        //graphics.fillRect(0*10, 0*10, 0*10 + 10, 0*10 + 10);
+    }
+    public EditorPanel(int width, int height, int pixSize, BufferedImage backgroundImg) {
+        super();
+        this.width = width;
+        this.height = height;
+        this.pixSize = pixSize;
+        this.pixNumWidth = this.width/pixSize;
+        this.pixNumHeight = this.height/pixSize;
+        this.background = backgroundImg;
+        image = this.background;
+        graphics = image.createGraphics();
+        addMouseListener(this);
+        addMouseMotionListener(this);
+        graphics.setColor(new Color(0, 255, 0));
+        drawGrid();
+        graphics.setColor(new Color(0, 0, 255));
     }
 
     // draws a 50x50 grid

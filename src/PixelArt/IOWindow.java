@@ -1,10 +1,14 @@
 package PixelArt;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.filechooser.FileFilter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 
 public class IOWindow extends JFrame implements ActionListener {
     JPanel ioPanel;
@@ -54,13 +58,34 @@ public class IOWindow extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent event) {
         if (event.getSource().equals(newFileBtn)) {
             //EditorPanel editorPanel = new EditorPanel(1080, 720, 10);
-            EditorWindow editorWindow = new EditorWindow();
+            EditorWindow editorWindow = new EditorWindow(1080,720,10);
             setVisible(false);
         } else if (event.getSource().equals(searcFileBtn)) {
             fileChooser.setCurrentDirectory(new File("C:\\Users\\emiiv\\Pictures"));
+            fileChooser.setFileFilter(new FileFilter() {
+                @Override
+                public boolean accept(File f) {
+                    if (f.isDirectory()) {
+                        return true;
+                    } else {
+                        String filename = f.getName().toLowerCase();
+                        return filename.endsWith(".jpg") || filename.endsWith(".jpeg") || filename.endsWith(".png");
+                    }
+                }
+
+                @Override
+                public String getDescription() {
+                    return "Static Images (*.jpg, *.png)";
+                }
+            });
             fileChooser.showDialog(null, "Load");
             File file = new File(fileChooser.getSelectedFile().getAbsolutePath());
-
+            try {
+                BufferedImage bkgImg = ImageIO.read(file);
+                EditorWindow editorWindow = new EditorWindow(1080, 720, 10, bkgImg);
+            }catch (IOException e){
+                e.printStackTrace();
+            }
         }
     }
 }
