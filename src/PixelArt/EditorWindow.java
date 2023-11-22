@@ -132,7 +132,7 @@ public class EditorWindow extends JFrame implements ActionListener, ChangeListen
     public void actionPerformed(ActionEvent actionEvent) {
         if(actionEvent.getSource().equals(saveImageButton)){
             JFileChooser fileChooser = new JFileChooser(".");
-            fileChooser.setCurrentDirectory(new File("C:\\Users\\emiiv\\Pictures"));
+            fileChooser.setCurrentDirectory(new File("."));
             fileChooser.showDialog(null, "Save");
             IOUtils.writeImage(image, fileChooser.getSelectedFile().getAbsolutePath());
         }

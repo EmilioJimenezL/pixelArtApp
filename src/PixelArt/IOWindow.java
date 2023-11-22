@@ -62,7 +62,7 @@ public class IOWindow extends JFrame implements ActionListener {
             EditorWindow editorWindow = new EditorWindow(1080,720,10);
             setVisible(false);
         } else if (event.getSource().equals(searcFileBtn)) {
-            fileChooser.setCurrentDirectory(new File("C:\\Users\\emiiv\\Pictures"));
+            fileChooser.setCurrentDirectory(new File("."));
             fileChooser.setFileFilter(new FileFilter() {
                 @Override
                 public boolean accept(File f) {
