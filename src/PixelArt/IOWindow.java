@@ -72,7 +72,6 @@ public class IOWindow extends JFrame implements ActionListener {
         } else if (event.getSource().equals(returnMenuBtn)) {
             MenuWindow menuWindow = new MenuWindow();
             this.setVisible(false);
-
         } else if (event.getSource().equals(searcFileBtn)) {
             fileChooser.setCurrentDirectory(new File("."));
             fileChooser.setFileFilter(new FileFilter() {
